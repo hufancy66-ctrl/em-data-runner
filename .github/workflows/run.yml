@@ -1,4 +1,4 @@
-name: e4-native-r-repair
+name: e4-dictionary-repair
 on:
   workflow_dispatch:
   push:
@@ -18,13 +18,13 @@ jobs:
       - name: Install Python packages
         run: |
           pip install pandas statsmodels requests
-      - name: Extract ILOSTAT E4 with native R
-        run: Rscript extract_e4.R
+      - name: Extract ILOSTAT E4 using official classification dictionaries
+        run: Rscript extract_e4_v2.R
       - name: Estimate E4 with country/year fixed effects
-        run: python estimate_e4_from_agg.py
+        run: python estimate_e4_v2.py
       - name: Upload E4 outputs
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: e4-native-r-outputs
-          path: outputs_e4_r
+          name: e4-dictionary-outputs
+          path: outputs_e4_r2
