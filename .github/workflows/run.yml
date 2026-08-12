@@ -1,4 +1,4 @@
-name: empirical-model-run
+name: empirical-model-repair
 on:
   workflow_dispatch:
   push:
@@ -14,11 +14,11 @@ jobs:
           python-version: '3.11'
       - name: Install packages
         run: |
-          pip install pandas numpy scipy statsmodels requests openpyxl matplotlib
-      - name: Run empirical pipeline
-        run: python ci_analysis.py
-      - name: Upload outputs
+          pip install pandas numpy scipy statsmodels requests pyreadr
+      - name: Run E1/E4 repair diagnostics
+        run: python repair_e1_e4.py
+      - name: Upload repair outputs
         uses: actions/upload-artifact@v4
         with:
-          name: empirical-model-outputs
-          path: outputs
+          name: empirical-model-repair-outputs
+          path: outputs_repair
