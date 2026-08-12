@@ -1,4 +1,4 @@
-name: empirical-model-repair
+name: e4-current-rds-repair
 on:
   workflow_dispatch:
   push:
@@ -15,10 +15,10 @@ jobs:
       - name: Install packages
         run: |
           pip install pandas numpy scipy statsmodels requests pyreadr
-      - name: Run E1/E4 repair diagnostics
-        run: python repair_e1_e4.py
-      - name: Upload repair outputs
+      - name: Run current ILOSTAT RDS E4 repair
+        run: python repair_e4_v3.py
+      - name: Upload E4 outputs
         uses: actions/upload-artifact@v4
         with:
-          name: empirical-model-repair-outputs
-          path: outputs_repair
+          name: e4-current-rds-outputs
+          path: outputs_e4_v3
